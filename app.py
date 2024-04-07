@@ -33,9 +33,29 @@ water_daily = {key: value.tolist() for key, value in generate_daily_consumption(
 unit_cost = {'electricity': 0.27, 'gas': 0.0913, 'water': 4.34}
 
 
+
+
 @app.route("/",methods=['GET'])
 def get_default():
     return jsonify({'result': "App Running..."})
+
+@app.route('/electricity')
+def get_electricity_data():
+    return jsonify(electricity_data.to_dict(orient='records'))
+
+@app.route('/gas')
+def get_gas_data():
+    return jsonify(gas_data.to_dict(orient='records'))
+
+@app.route('/water')
+def get_water_data():
+    return jsonify(water_data.to_dict(orient='records'))
+
+@app.route('/consumption_data')
+def get_consumption_data():
+    consumption_data = {'Electricity': electricity_daily,'Gas':gas_daily,'Water': water_daily}
+    return jsonify(consumption_data)
+
 
 if   __name__ == "__main__":
     app.run(debug=False)
