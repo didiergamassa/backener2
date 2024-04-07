@@ -23,7 +23,15 @@ def generate_daily_consumption(months, mean_consumption, std_dev):
         data[month] = np.random.normal(mean_consumption, std_dev, num_days).astype(int)
     return data
 
-app=Flask(__name__)
+# Calculate daily consumption
+electricity_daily = {key: value.tolist() for key, value in generate_daily_consumption(electricity_data['Month'], mean_consumption=4000, std_dev=1000).items()}
+gas_daily = {key: value.tolist() for key, value in generate_daily_consumption(gas_data['Month'], mean_consumption=2000, std_dev=500).items()}
+water_daily = {key: value.tolist() for key, value in generate_daily_consumption(water_data['Month'], mean_consumption=50, std_dev=10).items()}
+
+
+# Define unit costs
+unit_cost = {'electricity': 0.27, 'gas': 0.0913, 'water': 4.34}
+
 
 @app.route("/",methods=['GET'])
 def get_default():
