@@ -29,9 +29,6 @@ gas_daily = {key: value.tolist() for key, value in generate_daily_consumption(ga
 water_daily = {key: value.tolist() for key, value in generate_daily_consumption(water_data['Month'], mean_consumption=50, std_dev=10).items()}
 
 
-# Define unit costs
-unit_cost = {'electricity': 0.27, 'gas': 0.0913, 'water': 4.34}
-
 
 
 
