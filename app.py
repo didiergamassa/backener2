@@ -34,10 +34,6 @@ def get_gas_data():
 def get_water_data():
     return jsonify(water_data.to_dict(orient='records'))
 
-@app.route("/daily_consumption_data")
-def get_daily_consumption_data():
-    daily_consumption_data = {'Electricity': electricity_daily,'Gas':gas_daily,'Water': water_daily}
-    return jsonify(daily_consumption_data)
 
 
 if   __name__ == "__main__":
